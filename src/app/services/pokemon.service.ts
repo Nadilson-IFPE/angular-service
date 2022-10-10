@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,9 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class PokemonService {
 
-  constructor() { }
+  private baseURL: string = "";
+
+  constructor() {
+    this.baseURL = environment.pokeApi;
+  }
 
   getPokemon(pokemonName: string) {
-    console.log(pokemonName);
+    console.log(this.baseURL);
   }
 }
