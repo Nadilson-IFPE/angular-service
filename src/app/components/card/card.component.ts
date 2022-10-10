@@ -8,14 +8,25 @@ import { PokemonData } from 'src/app/models/pokemonData';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  pokemon: PokemonData | any;
+  pokemon: PokemonData;
   name: string = "CHARIZARD";
   attributesTypes: string[] = ['FIRE', 'ROCK'];
 
-  constructor(private service: PokemonService ) { }
+  constructor(private service: PokemonService ) {
+
+     this.pokemon = {
+          id: 0,
+          name: "",
+          sprites: {
+             front_default: ""
+          },
+          types: []
+     }
+
+  }
 
   ngOnInit(): void {
-    this.service.getPokemon("charizard").subscribe({
+    this.service.getPokemon("pikachu").subscribe({
       next: (res) => {
 
         this.pokemon = {
@@ -24,8 +35,9 @@ export class CardComponent implements OnInit {
           sprites: res.sprites,
           types: res.types
         }
-        console.log(res);
-        console.log(this.pokemon);
+        // console.log(res);
+        // console.log(res.types);
+        // console.log(this.pokemon);
       },
       error: (err) => console.log(err)
     });
