@@ -13,7 +13,10 @@ export class CardComponent implements OnInit {
   constructor(private service: PokemonService ) { }
 
   ngOnInit(): void {
-    this.service.getPokemon(this.name);
+    this.service.getPokemon("charizard").subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.log(err)
+    });
   }
 
 }
